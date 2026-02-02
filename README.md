@@ -6,13 +6,13 @@ A modern, AI-powered personal finance management application built with React, V
 
 ## ✨ Features
 
-- **📊 Dashboard** - Visual overview of your financial health with key metrics
-- **💰 Transaction Management** - Add, track, and manage income & expenses
-- **📈 Analytics** - Detailed charts and spending insights
-- **🤖 AI-Powered Advice** - Personalized financial recommendations
-- **🎯 Budget Planning** - Set and monitor monthly budgets
-- **🌙 Dark/Light Mode** - Beautiful themes for any time of day
-- **📱 Responsive Design** - Works seamlessly on all devices
+- ** Dashboard** - Visual overview of your financial health with key metrics
+- ** Transaction Management** - Add, track, and manage income & expenses
+- ** Analytics** - Detailed charts and spending insights
+- ** AI-Powered Advice** - Personalized financial recommendations
+- ** Budget Planning** - Set and monitor monthly budgets
+- ** Dark/Light Mode** - Beautiful themes for any time of day
+- ** Responsive Design** - Works seamlessly on all devices
 
 ## 🚀 Quick Start
 
@@ -49,7 +49,7 @@ npm run preview
 4. Vercel automatically detects the Vite configuration
 5. Deploy - Your app will be live in seconds!
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Frontend:** React 18
 - **Build Tool:** Vite 5
@@ -58,7 +58,7 @@ npm run preview
 - **Icons:** Lucide React
 - **Deployment:** Vercel
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 ai-finance-tracker/
@@ -85,7 +85,7 @@ ai-finance-tracker/
         └── BudgetSettings.jsx  # Budget configuration
 ```
 
-## 🎨 Design System
+##  Design System
 
 ### Color Palette
 
@@ -106,7 +106,7 @@ ai-finance-tracker/
 - **Inputs:** Full-width, rounded borders, focus states
 - **Navigation:** Top bar with horizontal links, mobile hamburger menu
 
-## 📱 Responsive Breakpoints
+##  Responsive Breakpoints
 
 | Breakpoint | Width |
 |------------|-------|
@@ -114,7 +114,7 @@ ai-finance-tracker/
 | Tablet | 640px - 1024px |
 | Desktop | > 1024px |
 
-## 🔧 Configuration
+##  Configuration
 
 ### Theme Toggle
 
@@ -164,7 +164,7 @@ Configure your monthly budget and alert threshold in Settings:
 - **Personalized Tips** - Based on your spending patterns
 - **Quick Tips** - General financial advice
 
-## 🧪 Development
+##  Development
 
 ### Available Scripts
 
@@ -180,21 +180,21 @@ npm run preview  # Preview production build
 - Prettier for code formatting
 - Tailwind CSS for styling
 
-## 📄 License
+##  License
 
 MIT License - feel free to use this project for personal or commercial purposes.
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📧 Support
+##  Support
 
 For support, please open an issue in the GitHub repository.
 
 ---
 
-## 📋 TODO - Development Log
+##  TODO - Development Log
 
 ### Phase 1: Foundation Updates
 - [x] Update index.css - Add dark mode CSS variables and modern styling
