@@ -1,0 +1,308 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-blue-50 text-slate-900 antialiased;
+  }
+
+  .dark body {
+    @apply bg-slate-800 text-slate-100;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-5 py-2.5 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-purple-600 text-white hover:from-indigo-600 hover:via-purple-600 hover:to-purple-700 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50;
+  }
+  
+  .btn-secondary {
+    @apply bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 hover:border-slate-300 dark:hover:border-slate-500 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-success {
+    @apply bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50;
+  }
+  
+  .btn-danger {
+    @apply bg-gradient-to-r from-red-500 to-rose-600 text-white hover:from-red-600 hover:to-rose-700 shadow-lg shadow-red-500/30 hover:shadow-red-500/50;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-slate-700 rounded-2xl shadow-lg shadow-blue-200/50 dark:shadow-slate-900/50 border border-blue-100 dark:border-slate-600 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-blue-200/60 dark:hover:shadow-slate-900/60;
+  }
+  
+  .input {
+    @apply w-full px-4 py-3.5 rounded-xl bg-white dark:bg-slate-600 border border-blue-200 dark:border-slate-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 outline-none text-slate-900 dark:text-white placeholder-slate-400 hover:border-blue-300 dark:hover:border-slate-400;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2;
+  }
+  
+  .stat-card {
+    @apply card p-6 relative overflow-hidden cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl;
+  }
+  
+  .stat-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 opacity-0 transition-opacity duration-300;
+  }
+  
+  .stat-card:hover::before {
+    @apply opacity-100;
+  }
+
+  .glass {
+    @apply bg-white/80 dark:bg-slate-700/80 backdrop-blur-xl border border-white/20 dark:border-slate-600/50;
+  }
+
+  .nav-link {
+    @apply px-4 py-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-blue-100 dark:hover:bg-slate-600 transition-all duration-300 font-medium relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-1 left-1/2 w-0 h-0.5 bg-indigo-500 dark:bg-indigo-400 rounded-full transition-all duration-300 -translate-x-1/2 opacity-0;
+  }
+
+  .nav-link:hover::after {
+    @apply w-8 opacity-100;
+  }
+
+  .nav-link-active {
+    @apply text-indigo-600 dark:text-indigo-400 bg-blue-100 dark:bg-slate-600;
+  }
+
+  .nav-link-active::after {
+    @apply w-8 opacity-100;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+
+  .hover-lift-sm {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-lg;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-indigo-500/30 hover:shadow-lg;
+  }
+
+  .gradient-orb {
+    @apply absolute rounded-full blur-3xl opacity-30 animate-pulse;
+  }
+
+  .modern-table th {
+    @apply px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 bg-blue-50 dark:bg-slate-600;
+  }
+
+  .modern-table td {
+    @apply px-4 py-4 text-slate-900 dark:text-slate-100 border-b border-blue-100 dark:border-slate-600;
+  }
+
+  .modern-table tr {
+    @apply transition-all duration-200 hover:bg-blue-50 dark:hover:bg-slate-600;
+  }
+
+  .modern-table tr:hover {
+    @apply scale-[1.01];
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-300;
+  }
+
+  .badge-danger {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300;
+  }
+
+  .badge-warning {
+    @apply bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-300;
+  }
+
+  .badge-info {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300;
+  }
+
+  .badge-primary {
+    @apply bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300;
+  }
+
+  .category-card {
+    @apply p-4 rounded-xl border-2 transition-all duration-300 transform hover:scale-105 cursor-pointer bg-white dark:bg-slate-600;
+  }
+
+  .category-card:hover {
+    @apply border-indigo-500 bg-blue-50 dark:bg-slate-500 shadow-lg shadow-indigo-500/20;
+  }
+
+  .category-card-active {
+    @apply border-indigo-500 bg-blue-50 dark:bg-slate-500 shadow-lg shadow-indigo-500/20;
+  }
+
+  .action-btn {
+    @apply relative flex items-center gap-4 p-5 rounded-2xl transition-all duration-300 transform hover:-translate-y-1;
+  }
+
+  .action-btn:hover {
+    @apply shadow-xl;
+  }
+
+  .icon-btn {
+    @apply p-2.5 rounded-xl transition-all duration-300 hover:scale-110 hover:rotate-3;
+  }
+
+  .progress-bar {
+    @apply h-2 bg-blue-200 dark:bg-slate-600 rounded-full overflow-hidden transition-all duration-300;
+  }
+
+  .progress-bar-fill {
+    @apply h-full rounded-full transition-all duration-500;
+  }
+
+  .custom-tooltip {
+    @apply bg-white dark:bg-slate-700 shadow-xl rounded-xl p-3 border border-blue-100 dark:border-slate-600;
+  }
+
+  .spinner {
+    @apply w-8 h-8 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin;
+  }
+
+  .page-enter {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+
+  .page-exit {
+    opacity: 1;
+  }
+
+  .page-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+
+  .advice-card {
+    @apply card p-6 overflow-hidden relative transition-all duration-300 transform hover:-translate-y-1 cursor-pointer;
+  }
+
+  .advice-card:hover {
+    @apply shadow-2xl;
+  }
+
+  .settings-card {
+    @apply p-4 rounded-xl transition-all duration-300 hover:bg-blue-50 dark:hover:bg-slate-600;
+  }
+
+  .chart-container {
+    @apply transition-all duration-300 hover:shadow-lg rounded-2xl;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 1s infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 3s linear infinite;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-xl bg-white/70 dark:bg-slate-700/70;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-blue-200 dark:bg-slate-600 rounded;
+  }
+
+  .text-shadow {
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(to right, theme('colors.indigo.500'), theme('colors.purple.500')) 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(0.5deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-blue-100 dark:bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-300 dark:bg-slate-500 rounded-full hover:bg-blue-400 dark:hover:bg-slate-400 transition-colors;
+}
+
+::selection {
+  @apply bg-indigo-500/30 text-indigo-900 dark:text-indigo-100;
+}
+
+:focus-visible {
+  @apply outline-none ring-2 ring-indigo-500 ring-offset-2 ring-offset-blue-50 dark:ring-offset-slate-800;
+}

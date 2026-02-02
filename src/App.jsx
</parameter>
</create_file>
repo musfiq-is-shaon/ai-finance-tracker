@@ -1,0 +1,168 @@
+ter name="content">
+import React, { useState, useEffect, useCallback } from 'react';
+import {
+  getTransactions,
+  saveTransactions,
+  getCategories,
+  getBudget,
+  calculateSummary,
+  getExpensesByCategory,
+  getMonthlyData,
+  generateFinancialAdvice,
+  DEFAULT_CATEGORIES,
+} from './utils/helpers';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Dashboard from './components/Dashboard';
+import TransactionForm from './components/TransactionForm';
+import TransactionList from './components/TransactionList';
+import Charts from './components/Charts';
+import AIAdvice from './components/AIAdvice';
+import BudgetSettings from './components/BudgetSettings';
+
+function App() {
+  const [transactions, setTransactions] = useState([]);
+  const [categories, setCategories] = useState(DEFAULT_CATEGORIES);
+  const [budget, setBudget] = useState({ monthlyLimit: 5000, alertThreshold: 80 });
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Load data from localStorage on mount
+  useEffect(() => {
+    const loadData = () => {
+      const savedTransactions = getTransactions();
+      const savedCategories = getCategories();
+      const savedBudget = getBudget();
+      
+      setTransactions(savedTransactions);
+      setCategories(savedCategories);
+      setBudget(savedBudget);
+      setIsLoading(false);
+    };
+
+    loadData();
+  }, []);
+
+  // Save transactions whenever they change
+  useEffect(() => {
+    if (!isLoading) {
+      saveTransactions(transactions);
+    }
+  }, [transactions, isLoading]);
+
+  const addTransaction = useCallback((transaction) => {
+    setTransactions((prev) => [
+      {
+        ...transaction,
+        id: Date.now().toString(),
+        createdAt: new Date().toISOString(),
+      },
+      ...prev,
+    ]);
+  }, []);
+
+  const deleteTransaction = useCallback((id) => {
+    setTransactions((prev) => prev.filter((t) => t.id !== id));
+  }, []);
+
+  const updateBudget = useCallback((newBudget) => {
+    setBudget(newBudget);
+    localStorage.setItem('finance_tracker_budget', JSON.stringify(newBudget));
+  }, []);
+
+  const summary = calculateSummary(transactions);
+  const expensesByCategory = getExpensesByCategory(transactions);
+  const monthlyData = getMonthlyData(transactions);
+  const financialAdvice = generateFinancialAdvice(transactions, budget);
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'dashboard':
+        return (
+          <Dashboard 
+            summary={summary}
+            budget={budget}
+            expensesByCategory={expensesByCategory}
+          />
+        );
+      case 'add':
+        return <TransactionForm categories={categories} onAdd={addTransaction} />;
+      case 'transactions':
+        return (
+          <TransactionList 
+            transactions={transactions}
+            categories={categories}
+            onDelete={deleteTransaction}
+          />
+        );
+      case 'charts':
+        return (
+          <Charts 
+            monthlyData={monthlyData}
+            expensesByCategory={expensesByCategory}
+            transactions={transactions}
+          />
+        );
+      case 'advice':
+        return <AIAdvice advice={financialAdvice} />;
+      case 'settings':
+        return (
+          <BudgetSettings 
+            budget={budget}
+            onSave={updateBudget}
+            categories={categories}
+          />
+        );
+      default:
+        return (
+          <Dashboard 
+            summary={summary}
+            budget={budget}
+            expensesByCategory={expensesByCategory}
+          />
+        );
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600 font-medium">Loading your finance tracker...</p>
+        </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Header onMenuClick={() => setSidebarOpen(true)} />
+      <Sidebar 
+        isOpen={sidebarOpen} 
+        onClose={() => setSidebarOpen(false)}
+        activeTab={activeTab}
+        onTabChange={(tab) => {
+          setActiveTab(tab);
+          setSidebarOpen(false);
+        }}
+      />
+      
+      <main className="lg:ml-64 pt-16 min-h-screen">
+        <div className="p-6 lg:p-8">
+          {renderContent()}
+        </div>
+      </main>
+
+      {/* Overlay for mobile sidebar */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
